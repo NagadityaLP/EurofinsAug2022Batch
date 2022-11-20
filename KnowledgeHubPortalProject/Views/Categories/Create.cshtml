@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Category</h2>
+
+<form action="Save" method="post">
+    Enter Category Name <br />
+    <input type="text" name="name" />@Html.ValidationMessage("name");<br />
+    Enter Category Description<br />
+    <textarea name="description" rows="6" cols="60">    </textarea><br />
+    <input type="submit" name="btnSubmit" value="Create" />
+</form>

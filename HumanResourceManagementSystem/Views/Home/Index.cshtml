@@ -1,0 +1,118 @@
+﻿@model IEnumerable<HumanResourceManagementSystem.Models.Entities.PersonalInformation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h3>@TempData["Message"]</h3>
+
+@if (User.IsInRole("HRM") && User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <h2>Browse Employee Details</h2>
+    <hr />
+    <form action="/Home/Index" method="post">
+        Search Employees
+        <input type="text" name="data" />
+        <input type="submit" name="btnSearch" value="Search Employees" />
+    </form>
+
+    <hr />
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Full Name
+        </th>
+        <th>MID</th>
+        <th>Department</th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>*@
+
+    </tr>
+
+    @*@if (User.IsInRole("HRM"))
+        {*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink((String.Concat(item.FirstName, " ", item.MiddleName, " ", item.LastName)), "Display", new { id = item.PersonalInformationID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficialInfo.MID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficialInfo.Department)
+            </td>
+
+            @* <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>*@
+            @if (User.IsInRole("HRM") && User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonalInformationID })
+                    @*@Html.ActionLink("Details", "Details", new { id=item.PersonalInformationID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.PersonalInformationID })*@
+                </td>
+
+            }
+        </tr>
+        //}
+
+    }
+    @*else
+        {
+            @HumanResourceManagementSystem.Models.Entities.PersonalInformation info;
+            @foreach (var item in Model)
+            {
+                if(item.FirstName == User.Identity.Name)
+            }
+            <tr>
+                <td>
+                    @Html.ActionLink((String.Concat(Model.FirstName, " ", Model.MiddleName, " ", item.LastName)), "Display", new { id = item.PersonalInformationID });
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficialInfo.MID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficialInfo.Department)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonalInformationID }, new { onclick = "javascript:return false;" })
+                </td>
+            </tr>
+        }*@
+
+</table>

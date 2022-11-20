@@ -1,0 +1,15 @@
+﻿@model HumanResourceManagementSystem.Models.Entities.PersonalInformation
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+@Html.AntiForgeryToken()
+@{Html.RenderPartial("_EditDisplay", Model);}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
